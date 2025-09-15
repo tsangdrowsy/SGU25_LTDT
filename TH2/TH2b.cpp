@@ -23,8 +23,8 @@ void solve(ofstream& fo) {
         }
     }
 
- verti.resize(n);
- hori.resize(n);
+verti.resize(n);
+hori.resize(n);
 
 
 for (int i=0;i<n;i++)

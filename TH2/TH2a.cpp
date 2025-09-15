@@ -31,7 +31,6 @@ void solve(ofstream& fo) {
         deg[j] = degi;
     }
 
-    // Ghi kết quả ra file output
     fo << n << endl;
     for (int i = 0; i < n; i++) {
         fo << deg[i] << endl;
