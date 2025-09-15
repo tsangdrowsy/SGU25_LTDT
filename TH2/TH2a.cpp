@@ -20,20 +20,26 @@ void solve(ofstream& fo) {
         }
     }
 
-    deg.resize(n);
-    for (int i = 0; i < n; i++) {
+ 
+
+ deg.resize(n);
+    for (int j = 0; j < n; j++) {
         int degi = 0;
-        for (int j = 0; j < n; j++) {
-            degi += a[i][j];
+        for (int i = 0; i < n; i++) {
+            degi += a[j][i];
         }
-        deg[i] = degi;
+        deg[j] = degi;
     }
 
+    // Ghi kết quả ra file output
     fo << n << endl;
     for (int i = 0; i < n; i++) {
         fo << deg[i] << endl;
     }
 }
+
+  
+
 
 int main() {
     freopen(FI, "r", stdin);    
