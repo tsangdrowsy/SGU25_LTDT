@@ -32,8 +32,6 @@ for (int i=0;i<n;i++)
     {
 hori[i]+=a[i][j];
 verti[j]+=a[i][j];
-
-
     }
     fo << n << endl;
     for (int i = 0; i < n; i++) {
