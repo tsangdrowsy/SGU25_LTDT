@@ -32,7 +32,6 @@ int main() {
             bonChua.push_back(i + 1); 
     }
 
-    // Ghi kết quả
     fo << bonChua.size() << endl;
     if (!bonChua.empty()) {
         for (int v : bonChua)
