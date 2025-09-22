@@ -57,7 +57,7 @@ int main(){
     bfs(x, y);
 
     if (!visited[y]) {
-        fo << "0\n"; // không có đường đi
+        fo << "0\n"; // nếu không có đường đi
         return 0;
     }
 
