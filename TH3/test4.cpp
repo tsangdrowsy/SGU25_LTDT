@@ -1,44 +1,55 @@
-#include<iostream>
-#include<vector>
-#include<stack>
-#include<sstream>
-
+#include <iostream>
+#include <vector>
+#include <sstream>
+#include <algorithm>
+#include<queue>
+#include<fstream>
 using namespace std;
 
-const int MAXN=100000;
-vector<int>adj[MAXN];
+#define FI "test4.inp"
+#define FO "test4.out"
+
+
+
+const int MAXN = 1000000;
+vector<int> adj[MAXN];
 bool visited[MAXN];
-vector<int>result;
+vector<int> result;
 
-void dfs_kodequy(int start)
-{
-    stack<int>st;
-    st.push(start);
+void bfs(int u) {
+   queue<int> q;
+   visited[u]=true;
+   q.push(u);
 
-    while(!st.empty())
+   while (!q.empty())
+   {
+    int u = q.front(); q.pop();
+    result.push_back(u);
+
+    for (int v: adj[u])
     {
-        int u=st.top(); st.pop();
-        if (!visited[u])
+        if (!visited[v])
         {
-            visited[u]=true;
-            result.push_back(u);
-            for (int v:adj[u])
-            if (!visited[v])
-            st.push(v);
-            
+            visited[v]=true;
+            q.push(v);
         }
     }
+
+
+   }
 }
 
-int main()
-{
-    int n, x;
-    cin >> n >> x;
-    cin.ignore();
+int main() {
+    ifstream fi(FI);
+    ofstream fo(FO);
+    int n,x;
+
+    fi >> n >> x;
+    fi.ignore(); 
 
     for (int i = 1; i <= n; ++i) {
         string line;
-        getline(cin, line);
+        getline(fi, line);
         stringstream ss(line);
         int v;
         while (ss >> v && v != -1) {
@@ -46,14 +57,23 @@ int main()
         }
     }
 
-    dfs_kodequy(x);
+    result.push_back(x); 
+    bfs(x);
 
-    cout << result.size() << endl;
+   
+    result.erase(result.begin());
+
+   
+    sort(result.begin(), result.end());
+
+    fo << result.size() << endl;
     for (int v : result) {
-        cout << v << " ";
+        fo << v << " ";
     }
-    cout << endl;
+    fo << endl;
 
+
+    fi.close();
+    fo.close();
     return 0;
 }
-
