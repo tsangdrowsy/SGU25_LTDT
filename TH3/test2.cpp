@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <sstream>
 #include <fstream>
 using namespace std;
@@ -8,27 +7,22 @@ using namespace std;
 #define FI "test2.inp"
 #define FO "test2.out"
 
-const int MAXN = 100000;
+const int MAXN = 100005;
 vector<int> adj[MAXN];
 int color[MAXN]; // -1: chưa tô, 0 hoặc 1: màu
+bool coPhanDoi = true;
 
-bool coPhanDoi(int start) {
-    queue<int> q;
-    color[start] = 0;
-    q.push(start);
-
-    while (!q.empty()) {
-        int u = q.front(); q.pop();
-        for (int v : adj[u]) {
-            if (color[v] == -1) {
-                color[v] = 1 - color[u];
-                q.push(v);
-            } else if (color[v] == color[u]) {
-                return false; // hai đỉnh kề cùng màu
-            }
+void dfs(int u, int c) {
+    color[u] = c;
+    for (int v : adj[u]) {
+        if (color[v] == -1) {
+            dfs(v, 1 - c);
+            if (!coPhanDoi) return;
+        } else if (color[v] == color[u]) {
+            coPhanDoi = false;
+            return;
         }
     }
-    return true;
 }
 
 int main() {
@@ -49,15 +43,12 @@ int main() {
         }
     }
 
-    fill(color, color + n + 1, -1); // chưa tô màu
+    fill(color, color + n + 1, -1);
 
-    bool PhanDoi = true;
     for (int i = 1; i <= n; ++i) {
         if (color[i] == -1) {
-            if (!coPhanDoi(i)) {
-                PhanDoi = false;
-                break;
-            }
+            dfs(i, 0);
+            if (!coPhanDoi) break;
         }
     }
 

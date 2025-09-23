@@ -50,7 +50,7 @@ int main() {
 
     fill(visited, visited + n + 1, false);
     fill(parent, parent + n + 1, -1);
-
+    found = false;
     dfs(x, y);
 
     if (!visited[y]) {
