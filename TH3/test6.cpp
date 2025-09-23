@@ -51,16 +51,16 @@ int main() {
         }
     }
 
-    vector<vector<int>> components;
+    vector<vector<int>> com;
 
     for (int i = 1; i <= n; ++i) {
         if (!visited[i]) {
-            components.push_back(bfs(i));
+            com.push_back(bfs(i));
         }
     }
 
-    fo << components.size() << endl;
-    for (const auto& comp : components) {
+    fo << com.size() << endl;
+    for (const auto& comp : com) {
         for (int v : comp) fo << v << " ";
         fo << endl;
     }
