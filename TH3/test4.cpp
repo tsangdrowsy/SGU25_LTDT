@@ -57,7 +57,6 @@ int main() {
         }
     }
 
-    result.push_back(x); 
     bfs(x);
 
    
