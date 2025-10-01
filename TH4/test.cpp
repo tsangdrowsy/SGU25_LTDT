@@ -15,8 +15,9 @@ int n;
 
 void readInput(ifstream &fi) {
     fi >> n;
+    fi.ignore();
     adj.assign(n + 1, vector<int>(n + 1, 0));
-    degree.assign(n + 1, 0);
+    degree.assign(n + 1, 0); //khá tương tự với resize
 
     for (int i = 1; i <= n; ++i)
         for (int j = 1; j <= n; ++j) {
@@ -25,14 +26,14 @@ void readInput(ifstream &fi) {
         }
 }
 
-bool isEuler() {
+bool isEuler() { //kiểm tra bậc chẵn
     for (int i = 1; i <= n; ++i)
         if (degree[i] % 2 != 0)
-            return false;
+            return false; 
     return true;
 }
 
-void findEulerCycle(int start) {
+void findEulerCycle(int start) { //hàm euler
     stack<int> st;
     st.push(start);
 
