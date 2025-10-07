@@ -40,7 +40,7 @@ void dijkstra(int x, int n) // x là start
         }
         for (auto &[v, w] : adj[u])
         {
-            if (dist[u] + w < dist[v])
+            if (dist[u] + w < dist[v]) 
             {
                 dist[v] = dist[u] + w;
                 trace[v] = u;
@@ -50,8 +50,8 @@ void dijkstra(int x, int n) // x là start
     }
 }
 
- int n, m, x, y;
-  int u, v, w;
+int n, m, x, y;
+int u, v, w;
 
 void readInput(ifstream &fi)
 {
