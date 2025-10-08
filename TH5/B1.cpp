@@ -15,40 +15,81 @@ vector<pair<int, int>> adj[MAXN];
 int dist[MAXN], trace[MAXN];
 bool visited[MAXN];
 
-
-void dijkstra(int x, int n) // x là start
+void dijkstra(int start, int n)
 {
-    for (int i = 1; i <= n; i++)
+    for (int i=1;i<=n;i++)
     {
-        dist[i] = INT_MAX;
-        visited[i] = false;
-        trace[i] = -1;
+        dist[i]=INT_MAX;
+        visited[i]=false;
+        trace[i]=-1;
+
     }
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    dist[x] = 0;
-    pq.push({0, x});
 
-    while (!pq.empty())
+    for (int i=1;i<=n;i++)
     {
-        int u = pq.top().second;
-        pq.pop();
+        int u=-1;
+        int minDist=INT_MAX;
 
-        if (visited[u])
-            continue;
+        for (int j=1;j<=n;j++)
         {
-            visited[u] = true;
-        }
-        for (auto &[v, w] : adj[u])
-        {
-            if (dist[u] + w < dist[v]) 
+            if (!visited[j]&&dist[j]<minDist)
             {
-                dist[v] = dist[u] + w;
-                trace[v] = u;
-                pq.push({dist[v], v});
+                minDist=dist[j];
+                u=j;
+            }
+
+            if (u==-1) break;
+
+            visited[u]=true;
+            
+            for (auto &[v,w]: adj[u])
+            {
+                if (dist[u]+w<dist[v])
+                {
+                    dist[v]=dist[u]+w;
+                    trace[v]=u;
+
+                }
             }
         }
     }
 }
+
+// cài bằng priority_queue (nhanh hơn cho đồ thị lớn, nhưng không dò được phần tử âm)
+
+// void dijkstra(int x, int n) // x là start
+// {
+//     for (int i = 1; i <= n; i++)
+//     {
+//         dist[i] = INT_MAX;
+//         visited[i] = false;
+//         trace[i] = -1;
+//     }
+//     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+//     dist[x] = 0;
+//     pq.push({0, x});
+
+//     while (!pq.empty())
+//     {
+//         int u = pq.top().second;
+//         pq.pop();
+
+//         if (visited[u])
+//             continue;
+//         {
+//             visited[u] = true;
+//         }
+//         for (auto &[v, w] : adj[u])
+//         {
+//             if (dist[u] + w < dist[v]) 
+//             {
+//                 dist[v] = dist[u] + w;
+//                 trace[v] = u;
+//                 pq.push({dist[v], v});
+//             }
+//         }
+//     }
+// }
 
 int n, m, x, y;
 int u, v, w;
