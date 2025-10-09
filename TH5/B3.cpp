@@ -47,7 +47,6 @@ void readInput(ifstream &fi)
         fi >> u >> v >> w;
         adj[u][v] = w;
         adj[v][u] = w;
-        // Nếu đồ thị vô hướng: adj[v][u] = w;
     }
 }
 
