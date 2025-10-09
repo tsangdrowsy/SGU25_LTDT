@@ -93,22 +93,7 @@ int main()
     vector<int> fullPath = path1;
     fullPath.insert(fullPath.end(), path2.begin(), path2.end());
 
-    // vector<int>path;
-    // int HTai=t;
-    // while (HTai !=-1)
-    // {
-    //     path.push_back(HTai);
-    //     HTai=trace[HTai];
-
-    // }
-    // if (!path[x])
-    // {
-    //     fo <<"Loi cu";
-    //     return 0;
-    // }
-
-    // reverse(path.begin(), path.end());
-
+  
     fo << fullPath.size() << "  " << dist1[x]+dist2[t] << endl;
     for (auto node : fullPath)
     {
