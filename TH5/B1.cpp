@@ -3,7 +3,7 @@
 #include <climits>
 #include <stack>
 #include <fstream>
-#include<algorithm>
+#include <algorithm>
 
 using namespace std;
 
@@ -17,39 +17,39 @@ bool visited[MAXN];
 
 void dijkstra(int start, int n)
 {
-    for (int i=1;i<=n;i++)
+    for (int i = 1; i <= n; i++)
     {
-        dist[i]=INT_MAX;
-        visited[i]=false;
-        trace[i]=-1;
-
+        dist[i] = INT_MAX;
+        visited[i] = false;
+        trace[i] = -1;
     }
 
-    for (int i=1;i<=n;i++)
+    dist[start]=0;
+
+    for (int i = 1; i <= n; i++)
     {
-        int u=-1;
-        int minDist=INT_MAX;
+        int u = -1;
+        int minDist = INT_MAX;
 
-        for (int j=1;j<=n;j++)
+        for (int j = 1; j <= n; j++)
         {
-            if (!visited[j]&&dist[j]<minDist)
+            if (!visited[j] && dist[j] < minDist)
             {
-                minDist=dist[j];
-                u=j;
+                minDist = dist[j];
+                u = j;
             }
+        }
+    
+        if (u == -1)break;
 
-            if (u==-1) break;
+        visited[u] = true;
 
-            visited[u]=true;
-            
-            for (auto &[v,w]: adj[u])
+        for (auto &[v, w] : adj[u])
+        {
+            if (dist[u] + w < dist[v])
             {
-                if (dist[u]+w<dist[v])
-                {
-                    dist[v]=dist[u]+w;
-                    trace[v]=u;
-
-                }
+                dist[v] = dist[u] + w;
+                trace[v] = u;
             }
         }
     }
@@ -81,7 +81,7 @@ void dijkstra(int start, int n)
 //         }
 //         for (auto &[v, w] : adj[u])
 //         {
-//             if (dist[u] + w < dist[v]) 
+//             if (dist[u] + w < dist[v])
 //             {
 //                 dist[v] = dist[u] + w;
 //                 trace[v] = u;
@@ -96,12 +96,13 @@ int u, v, w;
 
 void readInput(ifstream &fi)
 {
-    fi >> n>>m>> x>> y;
+    fi >> n >> m >> x >> y;
 
     for (int i = 0; i < m; i++)
     {
-        fi >> u>> v>> w;
+        fi >> u >> v >> w;
         adj[u].push_back({v, w});
+        adj[v].push_back({u,w});
     }
 }
 
@@ -112,26 +113,24 @@ int main()
 
     readInput(fi);
 
+    dijkstra(x, n);
 
-    dijkstra(x,n);
-
-    vector<int>path;
-    int HTai=y;
-    while (HTai !=-1)
+    vector<int> path;
+    int HTai = y;
+    while (HTai != -1)
     {
         path.push_back(HTai);
-        HTai=trace[HTai];
-
+        HTai = trace[HTai];
     }
 
     reverse(path.begin(), path.end());
 
-    fo<<path.size()<<"  "<<dist[y]<<endl;
-    for (auto node:path)
+    fo << path.size() << "  " << dist[y] << endl;
+    for (auto node : path)
     {
-        fo <<node<<"  ";
+        fo << node << "  ";
     }
 
-    fo<<endl;
+    fo << endl;
     return 0;
 }
