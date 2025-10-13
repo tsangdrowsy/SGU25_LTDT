@@ -85,12 +85,12 @@ int main()
 
     reverse(path.begin(), path.end());
 
-    fo<<path.size()<<"  "<<dist[y]<<endl;
+    cout<<path.size()<<"  "<<dist[y]<<endl;
     for (auto node:path)
     {
-        fo <<node<<"  ";
+        cout <<node<<"  ";
     }
 
-    fo<<endl;
+    cout<<endl;
     return 0;
 }

@@ -1,3 +1,5 @@
+
+
 #include <iostream>
 #include <queue>
 #include <climits>
@@ -91,6 +93,35 @@ void dijkstra(int start, int n)
 //     }
 // }
 
+// Ford-Bellman 
+
+// bool bellmanFord(int start, int n, vector<tuple<int, int, int>> &edges) {
+//     for (int i = 1; i <= n; i++) {
+//         dist[i] = INT_MAX;
+//         trace[i] = -1;
+//     }
+//     dist[start] = 0;
+
+//     for (int i = 1; i < n; i++) {
+//         for (auto &[u, v, w] : edges) {
+//             if (dist[u] != INT_MAX && dist[u] + w < dist[v]) {
+//                 dist[v] = dist[u] + w;
+//                 trace[v] = u;
+//             }
+//         }
+//     }
+
+//     // Kiểm tra chu trình âm
+//     for (auto &[u, v, w] : edges) {
+//         if (dist[u] != INT_MAX && dist[u] + w < dist[v]) {
+//             return false; // Có chu trình âm
+//         }
+//     }
+
+//     return true; // Không có chu trình âm
+// }
+
+
 int n, m, x, y;
 int u, v, w;
 
@@ -125,12 +156,12 @@ int main()
 
     reverse(path.begin(), path.end());
 
-    fo << path.size() << "  " << dist[y] << endl;
+    cout << path.size() << "  " << dist[y] << endl;
     for (auto node : path)
     {
-        fo << node << "  ";
+        cout << node << "  ";
     }
 
-    fo << endl;
+    cout << endl;
     return 0;
 }

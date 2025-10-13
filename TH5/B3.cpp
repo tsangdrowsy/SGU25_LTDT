@@ -65,14 +65,14 @@ int main()
         {
             if (adj[i][j] == INT_MAX)
             {
-                fo << "INF ";
+                cout << "INF ";
             }
             else
             {
-                fo << adj[i][j] << " ";
+                cout << adj[i][j] << " ";
             }
         }
-        fo << endl;
+        cout << endl;
     }
     return 0;
 }

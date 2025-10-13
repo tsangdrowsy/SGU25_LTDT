@@ -94,12 +94,12 @@ int main()
     fullPath.insert(fullPath.end(), path2.begin(), path2.end());
 
   
-    fo << fullPath.size() << "  " << dist1[x]+dist2[t] << endl;
+    cout << fullPath.size() << "  " << dist1[x]+dist2[t] << endl;
     for (auto node : fullPath)
     {
-        fo << node << "  ";
+        cout << node << "  ";
     }
 
-    fo << endl;
+    cout << endl;
     return 0;
 }
