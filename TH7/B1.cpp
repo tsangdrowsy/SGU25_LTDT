@@ -52,6 +52,8 @@ int main()
     }
 
     dfs_spanningtree(1);
+   
+
 
     cout << adjtree.size() << endl;
     for (auto [u, v] : adjtree)
