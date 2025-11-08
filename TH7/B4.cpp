@@ -27,6 +27,7 @@ int minKey(vector<int> &Key, vector<bool> &mstSet)
 
 vector<tuple<int, int, int>> mst;
 int TotalWeight=0;
+
 void PrimMST(vector<vector<pair<int, int>>> &adj, int n) {
     key.assign(n + 1, INT_MAX);
     mstSet.assign(n + 1, false);

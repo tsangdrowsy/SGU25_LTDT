@@ -43,10 +43,15 @@ bool unite(int x, int y)
         else if (RankArr[s2] < RankArr[s1])
         {
             parent[s2] = s1;
+        }
+        else
+        {
+            parent[s2] = s1;
             RankArr[s1]++;
         }
         return true;
     }
+
     return false;
 }
 bool comparator(vector<int> &a, vector<int> &b)
@@ -100,7 +105,8 @@ int main()
         edges[i] = {u - 1, v - 1, w};
     }
     int tong = kruskalsMST(n, edges);
-    cout << mst.size() << endl;
+    cout << mst.size() << " " << tong << endl;
+
     for (auto &[u, v, w] : mst)
     {
         cout << u + 1 << " " << v + 1 << " " << w << endl;
