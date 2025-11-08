@@ -57,6 +57,8 @@ int main()
     else
         REP(i, n)
             cout << color[i] + 1 << " ";
+    
+   
 }
 
 
